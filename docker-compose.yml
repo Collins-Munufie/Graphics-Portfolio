@@ -1,0 +1,8 @@
+version:  "3.8"
+
+services:
+  portfolio:
+    build: .
+    container_name: portfolio-app
+    ports:
+      - "80:80"
