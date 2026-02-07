@@ -108,3 +108,4 @@
   // Initial filter application
   applyFilter(filters[0].getAttribute("data-category"));
 })();
+ 
