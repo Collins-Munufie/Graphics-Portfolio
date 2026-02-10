@@ -1,0 +1,27 @@
+name: Docker CD
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            cd portfolio-devops || git clone https://github.com/<your-username>/portfolio-devops.git
+            cd portfolio-devops
+            docker build -t portfolio-app .
+            docker stop portfolio || true
+            docker rm portfolio || true
+            docker run -d -p 80:80 --name portfolio portfolio-app
