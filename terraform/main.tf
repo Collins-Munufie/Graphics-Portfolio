@@ -10,7 +10,7 @@ resource "aws_instance" "portfolio_server" {
   security_groups = [aws_security_group.web_sg.name]
 
   tags = {
-    Name = "portfolio-devops-server"
+    Name = "portfolio-server"
   }
 }
 
