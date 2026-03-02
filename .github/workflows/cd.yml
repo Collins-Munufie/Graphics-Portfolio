@@ -20,7 +20,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd portfolio-devops || git clone https://github.com/Collins-Munufie/Graphics-Portfolio.git
-            cd portfolio-devops
+            cd Graphics-Portfolio
             docker build -t portfolio-app .
             docker stop portfolio || true
             docker rm portfolio || true
